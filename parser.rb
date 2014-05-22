@@ -4,11 +4,11 @@ require 'csv'
 
 PREFIX    = 'http://www.luckyvoice.com'
 FILE      = 'songs.csv'
-LAST_PAGE = 453
+LAST_PAGE = 447
 
 def parse(doc, csv)
   doc.css('tbody tr').each do |row|
-    r_artist,r_track,r_duration = *row.css('td')
+    r_track,r_artist,r_duration = *row.css('td')
     artist   = r_artist.css('a').first.content.strip
     link     = r_artist.css('a').attr('href')
     track    = r_track.css('a').first.content.strip
@@ -23,6 +23,14 @@ CSV.open(FILE, 'w', :force_quotes => true) do |csv|
     puts "Page #{i}"
     doc = Nokogiri::HTML(open("#{PREFIX}/sing/songs?page=#{i}"))
     parse(doc, csv)
-    sleep 1 # to avoid being throttled
+    sleep 0.2 # to avoid being throttled
   end
 end
+
+# CSV can be imported with:
+#
+#   mongoimport -h 127.0.0.1 --port 3001 -d meteor -c songs --type csv -f artist,track,duration,link < songs.csv
+#
+# Get prod parameters using:
+#
+#   meteor mongo --url blah.meteor.com
