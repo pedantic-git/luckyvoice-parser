@@ -1,6 +1,5 @@
 {
   "packages": {
-    "pages": {},
-    "bootstrap-3": {}
+    "filter-collections": {}
   }
 }

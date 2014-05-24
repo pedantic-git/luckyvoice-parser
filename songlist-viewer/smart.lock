@@ -2,19 +2,13 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "pages": {},
-      "bootstrap-3": {}
+      "filter-collections": {}
     },
     "packages": {
-      "pages": {
-        "git": "https://github.com/alethes/meteor-pages.git",
-        "tag": "v1.0.20",
-        "commit": "717cbac89f02d2f1bb160b24c997050ce2dee45e"
-      },
-      "bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v3.1.1-1",
-        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+      "filter-collections": {
+        "git": "https://github.com/julianmontagna/filter-collections.git",
+        "tag": "v0.1.4",
+        "commit": "87bc9cee7a23459e427d4613383be3f67f29245c"
       }
     }
   }

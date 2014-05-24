@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+#pager, #searchdiv, #initials {
+    text-align: center;
+}

@@ -2,24 +2,48 @@
 
 Songs = new Meteor.Collection("songs");
 
-Pages = new Meteor.Pagination(Songs, {
-  perPage: 50,
-  dataMargin: 2,
-  table: {
-    class: "table table-border",
-    fields: ["artist", "track", "duration"],
-    header: ["Artist", "Title", "Duration"],
-    wrapper: "table-wrapper"
-  },
-  sort: {artist: 1}
-});
+if (Meteor.isServer) {
+
+  Meteor.FilterCollections.publish(Songs, {
+   name: 'songs'
+  });
+
+}
 
 if (Meteor.isClient) {
+
+  SongsFilter = new Meteor.FilterCollections(Songs, {
+    template: 'songs',
+    sort: {
+      defaults: [
+	['artist', 'asc']
+      ]
+    },
+    pager: {
+      options: [20, 50, 100],
+      itemsPerPage: 20
+    },
+    filters: {
+      artist: {
+	operator: ['$regex', 'i'],
+	condition: '$or',
+	searchable: true
+      },
+      track: {
+	operator: ['$regex', 'i'],
+	condition: '$or',
+	searchable: true
+      }
+    }
+  });
 
   Template.songs.events({
     'keyup #search': function (event) {
       var search = $('#search').val();
-      Pages.set({filters: {artist: search}});
+      SongsFilter.filter.set('artist', {value: search});
+      SongsFilter.filter.set('track', {value: search});
     }
   });
+
+  Template.songs.alpha = "abcdefghijklmnopqrstuvwxyz".split("");
 }
