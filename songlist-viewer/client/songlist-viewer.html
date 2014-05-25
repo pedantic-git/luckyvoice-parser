@@ -1,7 +1,7 @@
 <head>
   <title>Songlist</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/amelia/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/simplex/bootstrap.min.css">
 </head>
 
 <body>
@@ -11,14 +11,14 @@
 <template name="songs">
 
 <div id="searchdiv">
-  <input type="search" placeholder="Search here..." id="search" class="form-control">
+  <input type="text" placeholder="Search here..." id="search" class="form-control">
 </div>
 
 <div id="initials">
   <ul class="pagination">
     <li><a href="#" class="fc-filter-reset">all</a></li>
     {{#each alpha}}
-    <li class="{{#if fcFilterObj.isActive 'artist' '^{{alpha}}'}}active{{/if}}"><a href="#" class="fc-filter" data-fc-filter-field="artist" data-fc-filter-value="^{{this}}">{{this}}</a></li>
+    <li class="{{#if ../fcFilterObj.isActive 'artist' '^{{alpha}}'}}active{{/if}}"><a href="#" class="fc-filter" data-fc-filter-field="artist" data-fc-filter-value="^{{this}}">{{this}}</a></li>
     {{/each}}
   </ul>
 </div>
@@ -27,6 +27,7 @@
   <p>
     Showing {{fcPager.offsetStart}}-{{fcPager.offsetEnd}} of {{fcPager.totalItems}} tracks
     [Tracks per page:
+    <a href="#" class="fc-pager-option" data-fc-pager-page="10">10</a>
     <a href="#" class="fc-pager-option" data-fc-pager-page="20">20</a>
     <a href="#" class="fc-pager-option" data-fc-pager-page="50">50</a>
     <a href="#" class="fc-pager-option" data-fc-pager-page="100">100</a>]
