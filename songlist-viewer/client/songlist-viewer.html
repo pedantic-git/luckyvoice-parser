@@ -16,9 +16,9 @@
 
 <div id="initials">
   <ul class="pagination">
-    <li><a href="#" class="fc-filter-reset">all</a></li>
+    <li class="{{#if isartistfilter ''}}active{{/if}}"><a href="#" class="fc-filter-reset">all</a></li>
     {{#each alpha}}
-    <li class="{{#if fcFilterObj.isActive 'artist' '^{{alpha}}'}}active{{/if}}"><a href="#" class="fc-filter" data-fc-filter-field="artist" data-fc-filter-value="^{{this}}">{{this}}</a></li>
+    <li class="{{#if isartistfilter this}}active{{/if}}"><a href="#" class="fc-filter" data-fc-filter-field="artist" data-fc-filter-value="^{{this}}">{{this}}</a></li>
     {{/each}}
   </ul>
 </div>

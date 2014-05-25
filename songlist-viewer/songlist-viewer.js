@@ -37,8 +37,13 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.songs.rendered = function () {
+    Session.set('artistfilter', undefined);
+  };
+
   var search_func = function (event) {
     var search = $('#search').val();
+    Session.set('artistfilter', undefined);
     SongsFilter.filter.set('artist', {value: search});
     SongsFilter.filter.set('track', {value: search});
   };
@@ -46,18 +51,27 @@ if (Meteor.isClient) {
   Template.songs.events({
     'keyup #search': search_func,
     'touchleave #search': search_func,
-    'mouseleave #search': search_func,
     'click .fc-filter': function (event) {
       $('#search').val(''); // reset box
       // because filters only override the artist search
       SongsFilter.filter.set('track', {value: ''});
+
+      Session.set('artistfilter', event.target.innerHTML);
     },
     'click .fc-filter-reset': function (event) {
-      $('#search').val(''); // reset box
+      $('#search').val(''); // reset boxno
+      Session.set('artistfilter', undefined);
     }
   });
 
-  
-
-  Template.songs.alpha = "abcdefghijklmnopqrstuvwxyz".split("");
+  Template.songs.helpers({
+    alpha: "abcdefghijklmnopqrstuvwxyz".split(""),
+    isartistfilter: function (letter) {
+      var af = Session.get('artistfilter');
+      if (letter == '') {
+	return af == undefined;
+      }
+      return letter == af;
+    }
+  });
 }
