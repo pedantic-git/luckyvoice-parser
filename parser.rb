@@ -33,4 +33,4 @@ end
 #
 # Get prod parameters using:
 #
-#   meteor mongo --url blah.meteor.com | perl -nE 'm{mongodb://(.*?):(.*?)\@(.*?):(\d+)/(.*)}; say "mongoimport -h $3 -u $1 -p $2 --db $5 --collection songs --type csv -f artist,track,duration,link --file ../songs.csv --headerline"'
+#   meteor mongo --url blah.meteor.com | perl -nE 'm{mongodb://(.*?):(.*?)\@(.*?):(\d+)/(.*)}; say "mongoimport -h $3 -u $1 -p $2 --db $5 --collection songs --type csv -f artist,track,duration,link --file ../songs.csv"'
