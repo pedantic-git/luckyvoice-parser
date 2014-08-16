@@ -4,7 +4,7 @@ require 'csv'
 
 PREFIX    = 'http://www.luckyvoice.com'
 FILE      = 'songs.csv'
-LAST_PAGE = 447
+LAST_PAGE = 411
 
 def parse(doc, csv)
   doc.css('tbody tr').each do |row|
