@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'csv'
 
-PREFIX    = 'http://www.luckyvoice.com'
+PREFIX    = 'https://www.luckyvoicekaraoke.com'
 FILE      = 'songs.csv'
 LAST_PAGE = 411
 
